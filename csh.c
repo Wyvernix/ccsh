@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+// Will update the CWD and replace the home directory with tilde
 void updateCWD(char *buf, int size) {
   getcwd(buf, size);
   char* home = getenv("HOME");
@@ -12,27 +13,31 @@ void updateCWD(char *buf, int size) {
   }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
   // Variables
   char cmd[64];
   char params[512];
   char cwd[1024];
-  char out[576];
-  updateCWD(cwd, sizeof(cwd));
+  char linein[576];
 
   // Main loop
   do {
+    updateCWD(cwd, sizeof(cwd));
+    // Print prompt
     printf("[%s]$ ", cwd);
-    scanf("%63s", cmd);
-    fgets(params, 511, stdin);
-    sprintf(out, "%s %s", cmd, params);
-    //debug
-    printf("[%s]\n[%s]\n", cmd, params);
-    //end
+    // Scan input
+    fgets(linein, 512, stdin);
+    sscanf(linein, "%63s %511[^\n]", cmd, params);
+
+    if (argc > 1 && strcmp(argv[1], "debug") == 0) {
+      printf("[%s]\n[%s]\n", cmd, params); //debug
+    }
+
+    // Shell command overrides
     if (strcmp("cd", cmd) == 0) {
       chdir(params);
     } else {
-      system(out);
+      system(linein);
     }
   } while (strcmp("exit", cmd) != 0);
 
