@@ -19,7 +19,7 @@ void updateCWD() {
   }
 }
 
-int cp(char *cmd, char *params) {
+int cp(char *params) {
   if (strlen(params) == 0) {
     printf("cp: missing file operand\n");
     return 1;
@@ -85,7 +85,7 @@ int try_bash_commands(char *cmd, char *params) {
     free(namelist);
 
   } else if (strcmp("cp", cmd) == 0) {
-    cp(cmd, params);
+    cp(params);
   } else {
     return 1;
   }
@@ -96,7 +96,6 @@ int main(int argc, char* argv[]) {
   // Variables
   char cmd[64];
   char params[512];
-  char cwd[1024];
   char linein[576];
 
   char* user = getenv("USER");
