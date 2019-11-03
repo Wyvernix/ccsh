@@ -1,0 +1,10 @@
+Brandon: I primarily used the C programming documentation provided by
+the man-pages project in the Linux system. Available online here:
+https://www.kernel.org/doc/man-pages/
+Extra credit: the program will determine the user’s name and home
+directory in order to display a prompt relative to the user’s home
+directory. This will change if the user changes into a directory
+outside of the user’s home directory.
+Another feature is in the ‘CD’ directive. If the user runs the ‘cd’
+command without any parameters, the shell will move to the user’s home
+directory.

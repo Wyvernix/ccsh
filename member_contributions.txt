@@ -1,0 +1,4 @@
+Kelvin:
+  Worked on the makefile and tests
+Brandon:
+  Wrote the source code for shell

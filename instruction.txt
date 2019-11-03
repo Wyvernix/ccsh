@@ -1,0 +1,7 @@
+Instructions on how to build the shell:
+ - Open Terminal
+ - Change into the project directory
+ - Type 'make'
+
+Running:
+ - Run 'csh'
